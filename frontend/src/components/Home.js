@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Badge, Card, Dropdown } from "react-bootstrap";
-
 const Home = () => {
 	return (
 		<div className="d-flex justify-content-center">
@@ -24,21 +23,14 @@ const Home = () => {
 									Este proyecto es realizado para el curso de
 									<samp><var> Organizacion de Lenguajes
 										y Compiladores 2
-										</var>
+									</var>
 									</samp>
 									&thinsp;de la Carrera de Ingenieria de Ciencias y Sistemas en la Universidad de
 									San Carlos de Guatemala,
 								</h2>
 							</Card.Body>
 						</Card>
-					</Card.Text>
-					<Dropdown style={{ width: "100%" }}>
-						<Dropdown.Toggle id="arrival-site-menu">
-						</Dropdown.Toggle>
-						<Dropdown.Menu alignRight={true}>
-
-						</Dropdown.Menu>
-					</Dropdown>
+					</Card.Text>					
 				</Card.Body>
 			</Card>
 		</div>
