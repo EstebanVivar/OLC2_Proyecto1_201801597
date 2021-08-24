@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import 'codemirror/theme/monokai.css';
+import 'codemirror/theme/material.css';
 import { Button } from 'react-bootstrap';
 
 const Editor = () => {
@@ -9,26 +9,26 @@ const Editor = () => {
             <div class="container">
                 <div className="row">
                     <div className="col">
-                        <h1>Editor de entrada</h1>
+                        <h3 style={{ color: 'white' }}>Editor de entrada</h3>
                         <CodeMirror
-                            value="code"
                             width="545px"
-                            height="400px"
+                            height="375px"
                             options={{
-                                theme: 'monokai',
-                                mode: 'jsx',
+
+                                theme: 'material',
+                                mode: 'julia',
                             }}
                         />
                     </div>
                     <div className="col">
-                        <h1>Consola</h1>
+                        <h3 style={{ color: 'white' }}>Consola</h3>
                         <CodeMirror
-                            value="code"
                             width="545"
-                            height="400px"
+                            height="375px"
                             options={{
-                                theme: 'monokai',
-                                mode: 'jsx',
+                                lineNumbers:false,
+                                theme: 'material',
+                                mode: 'plain-text',
                             }}
                         />
                     </div>
@@ -38,7 +38,7 @@ const Editor = () => {
             <div class="container d-flex justify-content-center">
                 <div className="row">
                     <div className="col-6">
-                        <Button><h3>Analizar</h3></Button>
+                        <Button><h3 style={{ color: 'white' }}>Analizar</h3></Button>
                     </div>
                 </div>
             </div>
