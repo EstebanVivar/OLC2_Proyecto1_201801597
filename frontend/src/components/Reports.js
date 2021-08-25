@@ -4,7 +4,7 @@ import { Button, Card } from 'react-bootstrap';
 
 const Reports = () => {
     return (
-        <div class="container d-flex justify-content-center">
+        <div className="container d-flex justify-content-center">
             <div className="row">
                 <div className="col">
                     <Card bg="warning" text="white" style={{ height: '20rem' }}>
