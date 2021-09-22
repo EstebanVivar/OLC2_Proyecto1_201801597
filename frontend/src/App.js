@@ -3,11 +3,10 @@
 import Editor from './components/Analysis';
 import Home from './components/Home';
 import Reports from './components/Reports';
-
 import Symbols from './components/Symbols_Table';
-
-
 import Errors from './components/Errors';
+import Graph from './components/Graph';
+
 import Navigation from './components/Navigation';
 import { Route, Switch } from 'react-router-dom';
 
@@ -21,7 +20,8 @@ function App() {
         <Route path='/Bienvenida' component={Home} />
         <Route path='/Analisis' component={Editor} />
         <Route path='/Reportes' component={Reports} />
-        <Route path='/Errores' component={Errors} />
+        <Route path='/Errores' component={Errors} />        
+        <Route path='/AST' component={Graph} />
         <Route path='/TablaSimbolos' component={Symbols} />
       </Switch>
     </div>

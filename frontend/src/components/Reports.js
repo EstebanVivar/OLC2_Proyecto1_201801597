@@ -56,7 +56,7 @@ const Reports = () => {
                             </Card.Text>
                             <br/><br/>
                             <div className="container d-flex justify-content-center">
-                                <Button variant="dark" >
+                                <Button variant="dark" href='/AST'>
                                     Mostrar
                                 </Button>
                             </div>
