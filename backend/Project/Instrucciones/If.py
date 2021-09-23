@@ -1,3 +1,4 @@
+from backend.Project.Instrucciones.Continue import Continue
 from Abstract.Objeto import TipoObjeto
 from Abstract.NodoReporteArbol import NodoReporteArbol
 from Instrucciones.Return import Return
@@ -29,6 +30,7 @@ class If(NodoAST):
                     result = instruccion.ejecutar(tree, nuevaTabla)
                     if isinstance(result, Excepcion) :
                         return result
+                    if isinstance(result, Continue): return result
                     if isinstance(result, Break): return result
                     if isinstance(result, Return): return result
             else:            
@@ -38,12 +40,15 @@ class If(NodoAST):
                         result = instruccion.ejecutar(tree, nuevaTabla) 
                         if isinstance(result,Excepcion) :
                             return result     
+                        
+                        if isinstance(result, Continue): return result
                         if isinstance(result, Break): return result
                         if isinstance(result, Return): return result
                 elif self.elseIf != None:
                     result = self.elseIf.ejecutar(tree, table)
                     if isinstance(result, Excepcion): 
                         return result
+                    if isinstance(result, Continue): return result
                     if isinstance(result, Break): return result
                     if isinstance(result, Return): return result
 

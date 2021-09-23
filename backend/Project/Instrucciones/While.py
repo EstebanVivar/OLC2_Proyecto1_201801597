@@ -1,3 +1,4 @@
+from backend.Project.Instrucciones.Continue import Continue
 from Abstract.Objeto import TipoObjeto
 from Abstract.NodoReporteArbol import NodoReporteArbol
 from Instrucciones.Return import Return
@@ -27,6 +28,8 @@ class While(NodoAST):
                         if isinstance(result, Excepcion) :
                             tree.getExcepciones().append(result)
                             tree.updateConsola(result.toString())
+                        
+                        if isinstance(result, Continue ): break
                         if isinstance(result, Break): return None
                         if isinstance(result, Return): return result
                 else:

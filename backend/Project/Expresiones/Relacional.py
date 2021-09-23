@@ -22,8 +22,11 @@ class Relacional(NodoAST):
     def ejecutar(self, tree, table):
         res_left = self.OperacionIzq.ejecutar(tree, table)
         res_right = self.OperacionDer.ejecutar(tree, table)
-        if isinstance (res_right.valor.valor,Constante):
-            res_right=res_right.valor.valor
+        try:
+            if isinstance (res_right.valor.valor,Constante):
+                res_right=res_right.valor.valor
+        except:
+            pass
         
         if isinstance(res_left,Aritmetica):
             res_left=res_left.ejecutar(tree, table)
@@ -72,7 +75,9 @@ class Relacional(NodoAST):
             except:
                 if isinstance(res_left,Acceso_Array):
                     res_left=res_left.ejecutar(tree, table) 
-                    return Primitivo(TipoObjeto.BOOLEANO, res_left.getValue() > res_right.getValue());
+                if isinstance(res_left,Acceso_Array):
+                    res_left=res_left.ejecutar(tree, table) 
+                return Primitivo(TipoObjeto.BOOLEANO, res_left.getValue() > res_right.getValue());
             
                 print("X")
                 

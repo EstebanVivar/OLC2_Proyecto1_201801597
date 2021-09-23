@@ -1,3 +1,4 @@
+from Instrucciones.AccesoArray import Acceso_Array
 from Objeto.Primitivo import Primitivo
 from Abstract.Objeto import TipoObjeto
 from Abstract.NodoReporteArbol import NodoReporteArbol
@@ -14,6 +15,9 @@ class Longitud(NodoAST):
     
     def ejecutar(self, tree, table):
         resultado=self.array.ejecutar(tree,table)
+        if isinstance(self.array,Acceso_Array):
+            resultado=self.array.ejecutar(tree,table)
+            return Primitivo(TipoObjeto.ENTERO,len(resultado));
         self.lenght=len(resultado.valor)
         
         return Primitivo(TipoObjeto.ENTERO,len(resultado.valor)); 

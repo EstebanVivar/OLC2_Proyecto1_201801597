@@ -747,8 +747,10 @@ def getTabla(ast,tabla,ambito,listaSimbolos):
             # print(x.id+ " - "+x.ambito+" - "+x.tipo+" - "+str(x.fila)+" - "+str(x.columna)  )   
             getTabla(ast,x.tabla,x.id,listaSimbolos)
         else:
-            listaSimbolos.append({"id":x.id,"ambito":ambito,"tipo":tabla[x.id].valor.tipo.name,"fila":str(x.fila),"columna":str(x.columna)})
-            # print(x.id+ " - "+ambito+" - "+tabla[x.id].valor.tipo.name+" - "+str(x.fila)+" - "+str(x.columna))
-       
+            try:
+                listaSimbolos.append({"id":x.id,"ambito":ambito,"tipo":tabla[x.id].valor.tipo.name,"fila":str(x.fila),"columna":str(x.columna)})
+            except:
+                listaSimbolos.append({"id":x.id,"ambito":ambito,"tipo":"STRUCT","fila":str(x.fila),"columna":str(x.columna)})
+            
       
             

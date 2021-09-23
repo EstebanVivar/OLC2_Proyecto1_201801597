@@ -28,7 +28,7 @@ class For(NodoAST):
             return Excepcion('Semántico', 'Expresion no iterable', self.row, self.column)
 
         for var in expresion.valor:
-            nuevaTabla = TablaSimbolos(table,self.row, self.column,table.ambito,"FOR")
+            nuevaTabla = TablaSimbolos(table,self.row, self.column,table.ambito)
             simbol = Simbolo(self.id, self.row, self.column,var)
             resul = nuevaTabla.actualizarTabla(simbol)
             for instruccion in self.instrucciones:

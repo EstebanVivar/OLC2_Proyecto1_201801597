@@ -25,21 +25,21 @@ class AsignacionArray(NodoAST):
         self.columna = columna
 
     def ejecutar(self, tree, table):        
-        identificador_result=table.getTabla(self.identificador)     
-        if identificador_result == None:
+        array=table.getTabla(self.identificador)     
+        if array == None:
             return Excepcion("Semantico", "NO SE ENCONTRO EL identificador: " + self.identificador, self.fila, self.columna)
-        contador = 0
+        aux = ""
         resultado=False
-        for expresion in self.expresiones:  
+        for expresion in self.expresiones: 
             if not resultado:  
                 if isinstance( expresion,Identificador):
                     expresion=expresion.ejecutar(tree,table)                         
-                    resultado=identificador_result.valor.valor[expresion.valor-1]
+                    resultado=array.valor.valor[expresion.valor-1]
                 elif isinstance( expresion,Acceso_Array):
                     expresion=expresion.ejecutar(tree,table)  
-                    resultado=identificador_result.valor.valor[expresion.valor.valor-1]                    
+                    resultado=array.valor.valor[expresion.valor.valor-1]                    
                 else:
-                    resultado=identificador_result.valor.valor[expresion.valor.valor-1] 
+                    resultado=array.valor.valor[expresion.valor.valor-1] 
             else:
                 if isinstance( expresion,Identificador):
                     expresion=expresion.ejecutar(tree,table)
@@ -51,6 +51,7 @@ class AsignacionArray(NodoAST):
                             resultado=resultado.expresiones[expresion.valor-1]
                         except:
                             print("x")
+            
                
                 elif isinstance( expresion,Acceso_Array):
                     expresion=expresion.ejecutar(tree,table)
@@ -62,6 +63,7 @@ class AsignacionArray(NodoAST):
                             resultado=resultado.expresiones[expresion.valor.valor-1]
                         except:
                             print("x")
+                
                 else: 
                     try:
                         resultado=resultado.valor.expresiones[expresion.valor.valor-1]
@@ -70,13 +72,20 @@ class AsignacionArray(NodoAST):
                             resultado=resultado.expresiones[expresion.valor.valor-1]
                         except:
                             print("x")
+            
+            
         if isinstance( self.expresion,Aritmetica):
-                self.expresion=self.expresion.ejecutar(tree,table)
-        if isinstance( self.expresion,Constante):
-                self.expresion=self.expresion.valor
-        if isinstance(resultado.valor,Constante):
-            resultado=resultado.valor                           
-        resultado.valor=self.expresion
+            resultado.valor=self.expresion.ejecutar(tree,table)
+        elif isinstance( self.expresion,Constante):
+            self.expresion=self.expresion.valor
+            resultado.valor=self.expresion
+            return
+        
+        elif isinstance(resultado.valor,Constante):
+            resultado=resultado.valor
+            
+            return 
+                          
        
             
 

@@ -108,6 +108,8 @@ class Acceso_Array(NodoAST):
             if isinstance( resultado,Aritmetica):
                 resultado=resultado.ejecutar(tree,table)
                 return resultado
+            if isinstance( resultado,Array):
+                return resultado.expresiones
 
     def obtenerNodo(self):
         nodo = NodoReporteArbol("ACCESO_ARRAY")

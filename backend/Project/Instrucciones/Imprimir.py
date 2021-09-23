@@ -1,3 +1,4 @@
+from Expresiones.Aritmetica import Aritmetica
 from Expresiones.Array import Array
 from re import A
 from Expresiones.Identificador import Identificador
@@ -24,40 +25,51 @@ class Imprimir(NodoAST):
                 return value
             if isinstance(value,Constante):
                 value=value.valor
-            if value.tipo==TipoObjeto.ARREGLO:
-                tree.updateConsola("[")
-                cont = 0
-                for val in value.valor:
+            try:
+                if value.tipo==TipoObjeto.ARREGLO:
+                    tree.updateConsola("[")
+                    cont = 0
+                    for val in value.valor:
+                        print (isinstance(val.valor,Aritmetica))
+                        if isinstance(val.valor,Aritmetica):
+                            val=val.valor.ejecutar(tree,table)
+                            tree.updateConsola(val.valor)
+                            tree.updateConsola(",")
+                            continue
+                        
+                        try:
+                            tree.updateConsola(val.valor.valor.valor)
+                        except:
+                            if isinstance(val.valor,Array):
+                                self.valueGet(tree,val.valor)
+                        cont += 1
+                        if cont < len(value.valor):
+                            tree.updateConsola(",")
 
-                    
-                    tree.updateConsola(val.valor.valor.valor)
-                    cont += 1
-                    if cont < len(value.valor):
-                         tree.updateConsola(",")
-
-                tree.updateConsola("]")
-            elif value != None:
-                if type(value) == str:
-                    if value.valor == True or value.valor == False:
-                        tree.updateConsola(str(value.valor).lower())
+                    tree.updateConsola("]")
                 else:
-                    try:
-                        tree.updateConsola(value.valor) 
-                    except:print("x")         
+                    if value != None:
+                        if type(value) == str:
+                            if value.valor == True or value.valor == False:
+                                tree.updateConsola(str(value.valor).lower())
+                        else:
+                            try:
+                                tree.updateConsola(value.valor) 
+                            except:print("x")   
+            except:
+                if value != None:
+                    if type(value) == str:
+                        if value.valor == True or value.valor == False:
+                            tree.updateConsola(str(value.valor).lower())
+                    else:
+                        try:
+                            tree.updateConsola(value.valor) 
+                        except:print("x")         
         return value
 
-    def valor(self,x,tree, table):
-        if isinstance(x,Identificador):
-            valor=x.ejecutar(tree, table)
-            return valor.valor;
-
-        if isinstance(x,Constante):
-            x = x.valor
-            self.valor(x,tree,table)
-        if isinstance(x,Primitivo):
-            return x.valor        
-        else:
-            self.valor(x,tree,table)
+    def valueGet(self,tree,array):
+        for exp in array.expresiones:
+            tree.updateConsola(exp.valor.valor) 
 
     def obtenerNodo(self):
         nodo = NodoReporteArbol("IMPRIMIR")
