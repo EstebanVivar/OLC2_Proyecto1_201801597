@@ -14,7 +14,7 @@ const Editor = () => {
     const getX = async (e) => {
         e.preventDefault();
         await axios
-            .post("http://localhost:5000/Analisis", { input: TextEditor })
+            .post("https://quiet-springs-28392.herokuapp.com/Analisis", { input: TextEditor })
             .then(response => {
                 if (response) {
                     console.log(response.data)

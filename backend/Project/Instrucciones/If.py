@@ -1,4 +1,4 @@
-from backend.Project.Instrucciones.Continue import Continue
+from Instrucciones.Continue import Continue
 from Abstract.Objeto import TipoObjeto
 from Abstract.NodoReporteArbol import NodoReporteArbol
 from Instrucciones.Return import Return

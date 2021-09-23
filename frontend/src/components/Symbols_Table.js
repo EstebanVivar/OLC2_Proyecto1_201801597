@@ -8,7 +8,7 @@ const Symbols = () => {
     useEffect(() => {
         async function fetch() {
             await axios
-                .post("http://localhost:5000/TablaSimbolos")
+                .post("https://quiet-springs-28392.herokuapp.com/TablaSimbolos")
                 .then(response => {
                     if (response) {
                         updateSimbols(response.data)

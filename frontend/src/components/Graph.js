@@ -10,7 +10,7 @@ const Graph = () => {
     useEffect(() => {
         async function fetch() {
             await axios
-                .post("http://localhost:5000/AST")
+                .post("https://quiet-springs-28392.herokuapp.com/AST")
                 .then(response => {
                     if (response) {
                         console.log(response.data)
